@@ -1,7 +1,7 @@
 {
   "name": "bgsystem3-configure",
   "private": true,
-  "version": "0.0.0",
+  "version": "3.0.171-alpha",
   "type": "module",
   "scripts": {
     "dev": "vite",

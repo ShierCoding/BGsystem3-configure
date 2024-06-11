@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "bgsystem3-configure",
-    "version": "0.0.0"
+    "version": "3.0.171"
   },
   "tauri": {
     "allowlist": {
@@ -18,7 +18,9 @@
       },
       "fs": {
         "all": true,
-        "scope": ["**"]
+        "scope": [
+          "**"
+        ]
       },
       "path": {
         "all": true
