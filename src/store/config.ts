@@ -7,8 +7,11 @@ export const useConfigStore = defineStore("config", {
         return DefaultConfig();
     },
     actions: {
-        updateConfig(config: Partial<ReturnType<typeof DefaultConfig>>) {
+        update(config: Partial<ReturnType<typeof DefaultConfig>>) {
             this.$patch(deepmerge(this.$state, config));
+        },
+        updateConfig(config: Partial<ReturnType<typeof DefaultConfig>>) {
+            this.update(config);
         },
     }
 });

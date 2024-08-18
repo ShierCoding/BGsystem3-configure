@@ -5,7 +5,7 @@
         <div style="margin-top: 1em;"></div>
         <div style="float: right; display: flex; gap: 10px;">
             <Button @click="infoStore.showCode = false">关闭</Button>
-            <Button @click="updateConfig(); infoStore.showCode = false">更新配置</Button>
+            <!-- <Button @click="updateConfig(); infoStore.showCode = false">更新配置</Button> -->
         </div>
     </Dialog>
 </template>
@@ -14,10 +14,12 @@
 import VMonaco from "@/components/monaco/VMonaco.vue";
 import { useConfigStore } from "@/store/config";
 import { useInfoStore } from "@/store/info";
+import { useSignalStore } from "@/store/signal";
 import { ref } from "vue";
 
 const infoStore = useInfoStore();
 const config = useConfigStore();
+const signalStore = useSignalStore();
 
 const code = ref("");
 
@@ -33,6 +35,8 @@ const updateConfig = () => {
     } catch (error) {
         console.error(error);
     }
+
+    signalStore.updateSignal();
 };
 
 </script>

@@ -9,8 +9,9 @@
     </div>
 
     <ol style="margin: 2em 0;" v-show="infoStore.path">
-        <StyleQuestion />
-        <RandomQuestion />
+        <!-- <StyleQuestion />
+        <Random /> -->
+        <Schedule />
         <div style="margin: 5em;"></div>
         <ViewCode />
     </ol>
@@ -20,7 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import StyleQuestion from "@/components/questions/StyleQuestion.vue";
 import SpeedDial from "@/components/comp/SpeedDial.vue";
 
 import { useInfoStore } from "@/store/info";
@@ -32,7 +32,10 @@ import { useRoute } from "vue-router";
 import { useConfigStore } from "@/store/config";
 
 import { Hex2Str } from "@/core/utils";
-import RandomQuestion from "@/components/questions/RandomQuestion.vue";
+
+import StyleQuestion from "@/components/questions/Style.vue";
+import Random from "@/components/questions/Random.vue";
+import Schedule from "@/components/questions/Schedule.vue";
 
 const route = useRoute();
 const infoStore = useInfoStore();

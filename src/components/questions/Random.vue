@@ -4,7 +4,7 @@
             权重为被选中概率，权重越大被选中概率越大，权重为0则不会被选中。
         </span>
         <p>
-            <DataTable :value="configStore.fn.random.data" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">
+            <DataTable :value="TableValue" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]">
                 <Column field="id" header="学号" sortable></Column>
                 <Column field="name" header="姓名" sortable></Column>
                 <Column field="val" header="权重" sortable>
@@ -54,17 +54,32 @@
 import { useConfigStore } from "@/store/config";
 import BlockComponent from "../comp/BlockComponent.vue";
 import VMonaco from "../monaco/VMonaco.vue";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 import { vMarkdown } from "@/vMarkdown";
+import { useSignalStore } from "@/store/signal";
 
 const configStore = useConfigStore();
+const signalStore = useSignalStore();
 
 const dataCode = computed(() => {
-    return JSON.stringify(configStore.fn.random.data, null, 4);
+    return JSON.stringify(TableValue.value, null, 4);
 });
 
 const codeError = ref("");
+
+
+const TableValue = ref<any[]>([]);
+
+watch([() => signalStore.reloadSignal, () => configStore.fn.random.data], () => {
+    TableValue.value = configStore.fn.random.data;
+});
+
+setInterval(() => {
+    TableValue.value = configStore.fn.random.data;
+}, 1000);
+
+
 
 const ChangeCode = (code: string) => {
     try {
